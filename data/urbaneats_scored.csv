@@ -1,0 +1,151 @@
+order_id,order_date,restaurant_name,delivery_zone,order_value,delivery_time_mins,rider_rating,order_status,payment_method,discount_applied,customer_complaints,restaurant_enc,zone_enc,cancel_probability,cancel_risk
+ORD00001,2024-09-25,Pizza Palace,North,1705.0,54.5,3.0,Delayed,Cash,12.0,0,1,1,0.25,low
+ORD00002,2024-03-11,Pizza Palace,East,807.0,53.5,4.2,Cancelled,Card,12.0,3,1,0,0.15,low
+ORD00003,2024-12-11,Spice Garden,South,466.0,46.0,3.6,Delayed,Card,1.0,3,2,4,0.55,high
+ORD00004,2024-07-10,Wrap & Roll,East,675.0,53.5,3.6,Delivered,UPI,3.0,0,4,0,0.31,low
+ORD00005,2024-03-15,Wrap & Roll,North,349.0,54.5,2.0,Refunded,Cash,20.0,0,4,1,0.39,low
+ORD00006,2024-08-28,Pizza Palace,West,814.0,57.0,2.0,Delivered,Wallet,24.0,2,1,2,0.13,low
+ORD00007,2024-05-09,Pizza Palace,East,423.0,53.0,,Cancelled,Cash,2.0,0,1,0,0.85,high
+ORD00008,2024-12-04,Burger Hub,North,134.0,80.0,,Cancelled,Card,1.0,2,3,1,0.67,high
+ORD00009,2024-11-10,Sushi Bay,East,1559.0,54.0,,Delivered,Card,25.0,2,0,0,0.12,low
+ORD00010,2024-09-24,Sushi Bay,West,733.0,25.0,,Delivered,Cash,8.0,1,0,2,0.02,low
+ORD00011,2024-08-20,Pizza Palace,West,1157.0,75.0,,Refunded,Wallet,25.0,1,1,2,0.46,low
+ORD00012,2024-03-14,Spice Garden,East,806.0,66.0,,Delivered,UPI,19.0,3,2,0,0.12,low
+ORD00013,2024-10-28,Spice Garden,Central,153.0,19.0,2.1,Refunded,UPI,29.0,1,2,3,0.45,low
+ORD00014,2024-07-11,Spice Garden,North,1349.0,59.0,3.7,Cancelled,Card,3.0,2,2,1,0.78,high
+ORD00015,2024-12-21,Pizza Palace,North,535.0,55.0,3.9,Delivered,Cash,22.0,3,1,1,0.11,low
+ORD00016,2024-07-14,Spice Garden,North,1322.0,65.0,3.9,Delayed,Wallet,2.0,0,2,1,0.74,high
+ORD00017,2024-04-28,Burger Hub,North,1745.0,36.0,3.9,Cancelled,Card,15.0,2,3,1,0.12,low
+ORD00018,2024-12-07,Wrap & Roll,North,190.0,17.0,3.4,Delayed,Cash,26.0,3,4,1,0.31,low
+ORD00019,2024-01-19,Burger Hub,South,1321.0,47.0,4.1,Refunded,UPI,21.0,2,3,4,0.43,low
+ORD00020,2024-03-05,Sushi Bay,South,984.0,41.0,2.9,Delivered,Cash,29.0,0,0,4,0.1,low
+ORD00021,2024-05-16,Pizza Palace,East,247.0,89.0,2.9,Cancelled,UPI,13.0,0,1,0,0.47,low
+ORD00022,2024-07-01,Wrap & Roll,West,309.0,56.0,2.9,Delivered,Wallet,13.0,3,4,2,0.27,low
+ORD00023,2024-01-12,Spice Garden,West,1362.0,20.0,3.8,Cancelled,UPI,21.0,2,2,2,0.67,high
+ORD00024,2024-04-02,Pizza Palace,East,1644.0,81.0,3.3,Delivered,Card,5.0,2,1,0,0.15,low
+ORD00025,2024-09-08,Spice Garden,West,1379.0,62.0,3.5,Cancelled,Cash,29.0,1,2,2,0.82,high
+ORD00026,2024-02-07,Wrap & Roll,Central,1226.0,56.0,3.3,Cancelled,Card,16.0,1,4,3,0.85,high
+ORD00027,2024-10-11,Sushi Bay,West,609.0,58.0,2.2,Refunded,Card,27.0,0,0,2,0.34,low
+ORD00028,2024-08-05,Pizza Palace,South,1172.0,47.0,2.2,Delayed,Cash,20.0,1,1,4,0.25,low
+ORD00029,2024-12-02,Burger Hub,Central,948.0,80.0,2.2,Refunded,UPI,11.0,1,3,3,0.8,high
+ORD00030,2024-10-13,Wrap & Roll,East,1017.0,73.0,2.8,Refunded,Wallet,28.0,0,4,0,0.52,low
+ORD00031,2024-04-01,Spice Garden,East,1428.0,40.0,2.3,Cancelled,UPI,25.0,0,2,0,0.07,low
+ORD00032,2024-12-15,Spice Garden,West,1207.0,90.0,2.7,Cancelled,Wallet,5.0,0,2,2,0.8,high
+ORD00033,2024-10-27,Spice Garden,West,403.0,85.0,2.8,Delivered,Card,23.0,1,2,2,0.28,low
+ORD00034,2024-05-05,Burger Hub,West,1402.0,81.0,4.7,Delivered,Wallet,0.0,3,3,2,0.4,low
+ORD00035,2024-09-10,Spice Garden,East,522.0,39.0,4.7,Delayed,Card,14.0,0,2,0,0.04,low
+ORD00036,2024-12-17,Pizza Palace,East,370.0,29.0,2.1,Delivered,Cash,16.0,1,1,0,0.13,low
+ORD00037,2024-11-13,Wrap & Roll,West,356.0,72.0,2.5,Delayed,UPI,16.0,1,4,2,0.66,high
+ORD00038,2024-03-01,Burger Hub,West,1521.0,65.0,3.3,Cancelled,Wallet,17.0,0,3,2,0.84,high
+ORD00039,2024-01-09,Spice Garden,North,1226.0,82.0,4.0,Delivered,UPI,17.0,2,2,1,0.22,low
+ORD00040,2024-06-13,Sushi Bay,South,1640.0,28.0,3.0,Refunded,Card,0.0,3,0,4,0.53,low
+ORD00041,2024-01-26,Burger Hub,South,1500.0,84.0,3.6,Refunded,UPI,28.0,2,3,4,0.62,high
+ORD00042,2024-07-28,Wrap & Roll,West,994.0,69.0,2.4,Cancelled,Card,28.0,0,4,2,0.81,high
+ORD00043,2024-07-05,Burger Hub,East,526.0,19.0,4.1,Delayed,Cash,17.0,0,3,0,0.1,low
+ORD00044,2024-12-28,Sushi Bay,East,1419.0,50.0,3.2,Refunded,Wallet,16.0,1,0,0,0.14,low
+ORD00045,2024-05-27,Pizza Palace,West,1471.0,33.0,4.5,Refunded,UPI,19.0,0,1,2,0.24,low
+ORD00046,2024-12-01,Spice Garden,Central,1432.0,68.0,3.3,Refunded,UPI,15.0,3,2,3,0.76,high
+ORD00047,2024-04-25,Burger Hub,Central,998.0,60.0,4.4,Delayed,Cash,11.0,1,3,3,0.66,high
+ORD00048,2024-12-13,Burger Hub,Central,1707.0,64.0,2.6,Cancelled,Wallet,18.0,1,3,3,0.84,high
+ORD00049,2024-12-11,Sushi Bay,Central,1550.0,17.0,2.4,Delivered,UPI,17.0,0,0,3,0.09,low
+ORD00050,2024-05-06,Wrap & Roll,Central,441.0,65.0,5.0,Refunded,Wallet,21.0,3,4,3,0.73,high
+ORD00051,2024-09-11,Sushi Bay,Central,700.0,39.0,3.9,Delayed,Cash,13.0,2,0,3,0.08,low
+ORD00052,2024-11-09,Sushi Bay,Central,267.0,19.0,5.0,Delivered,UPI,9.0,2,0,3,0.18,low
+ORD00053,2024-02-11,Sushi Bay,West,1776.0,23.0,4.7,Refunded,Cash,8.0,1,0,2,0.12,low
+ORD00054,2024-09-23,Pizza Palace,South,307.0,57.0,4.5,Delayed,Card,11.0,1,1,4,0.34,low
+ORD00055,2024-03-02,Spice Garden,North,1455.0,34.0,2.0,Refunded,Wallet,4.0,0,2,1,0.27,low
+ORD00056,2024-03-02,Pizza Palace,North,1735.0,42.0,3.8,Delayed,UPI,7.0,1,1,1,0.1,low
+ORD00057,2024-03-11,Burger Hub,North,481.0,54.0,2.0,Cancelled,Card,29.0,2,3,1,0.75,high
+ORD00058,2024-03-19,Wrap & Roll,Central,839.0,17.0,2.4,Delivered,UPI,16.0,0,4,3,0.33,low
+ORD00059,2024-05-14,Sushi Bay,East,251.0,16.0,4.4,Refunded,Cash,17.0,1,0,0,0.19,low
+ORD00060,2024-10-14,Spice Garden,South,1558.0,21.0,3.0,Cancelled,Card,27.0,1,2,4,0.39,low
+ORD00061,2024-01-19,Burger Hub,West,162.0,74.0,4.5,Refunded,Wallet,2.0,2,3,2,0.66,high
+ORD00062,2024-02-06,Wrap & Roll,East,916.0,79.0,3.9,Refunded,Card,15.0,2,4,0,0.38,low
+ORD00063,2024-03-09,Spice Garden,Central,1709.0,16.0,3.1,Delivered,Wallet,18.0,2,2,3,0.18,low
+ORD00064,2024-12-17,Burger Hub,Central,1721.0,30.0,3.0,Delayed,Wallet,23.0,0,3,3,0.34,low
+ORD00065,2024-05-09,Sushi Bay,North,664.0,78.0,3.9,Delivered,Cash,2.0,0,0,1,0.67,high
+ORD00066,2024-02-12,Pizza Palace,East,511.0,67.0,3.5,Delayed,UPI,9.0,0,1,0,0.19,low
+ORD00067,2024-12-08,Spice Garden,West,1140.0,71.0,2.0,Cancelled,Cash,26.0,3,2,2,0.84,high
+ORD00068,2024-07-05,Wrap & Roll,North,272.0,38.0,3.1,Refunded,Cash,30.0,3,4,1,0.29,low
+ORD00069,2024-05-08,Burger Hub,South,480.0,20.0,3.9,Refunded,Wallet,2.0,1,3,4,0.53,low
+ORD00070,2024-09-16,Sushi Bay,South,939.0,27.0,2.2,Delivered,UPI,21.0,0,0,4,0.14,low
+ORD00071,2024-07-16,Pizza Palace,North,1694.0,37.0,4.4,Delayed,Wallet,19.0,0,1,1,0.07,low
+ORD00072,2024-03-04,Sushi Bay,North,1503.0,39.0,4.7,Refunded,Wallet,17.0,0,0,1,0.06,low
+ORD00073,2024-12-27,Pizza Palace,North,1263.0,50.0,4.8,Refunded,Cash,8.0,3,1,1,0.11,low
+ORD00074,2024-10-19,Wrap & Roll,North,266.0,87.0,4.2,Cancelled,Cash,0.0,2,4,1,0.83,high
+ORD00075,2024-04-07,Burger Hub,East,1496.0,64.0,4.5,Delivered,Card,15.0,0,3,0,0.1,low
+ORD00076,2024-08-05,Pizza Palace,North,1251.0,55.0,2.8,Refunded,Card,30.0,1,1,1,0.34,low
+ORD00077,2024-10-13,Spice Garden,South,362.0,44.0,3.3,Delivered,Card,19.0,2,2,4,0.05,low
+ORD00078,2024-06-01,Burger Hub,East,824.0,34.0,4.4,Delivered,UPI,30.0,3,3,0,0.07,low
+ORD00079,2024-12-12,Sushi Bay,North,1102.0,79.0,2.9,Delayed,Cash,3.0,3,0,1,0.65,high
+ORD00080,2024-11-11,Spice Garden,Central,150.0,62.0,3.7,Cancelled,Wallet,25.0,3,2,3,0.78,high
+ORD00081,2024-09-06,Burger Hub,East,1657.0,29.0,4.7,Delivered,UPI,24.0,1,3,0,0.03,low
+ORD00082,2024-10-06,Burger Hub,Central,618.0,74.0,2.1,Cancelled,Wallet,13.0,0,3,3,0.83,high
+ORD00083,2024-12-02,Sushi Bay,West,777.0,73.0,2.7,Delayed,Cash,25.0,0,0,2,0.38,low
+ORD00084,2024-12-02,Spice Garden,North,1518.0,18.0,2.6,Refunded,Wallet,26.0,1,2,1,0.17,low
+ORD00085,2024-03-01,Sushi Bay,Central,1495.0,63.0,2.7,Cancelled,Wallet,19.0,0,0,3,0.86,high
+ORD00086,2024-10-15,Sushi Bay,Central,583.0,20.0,4.9,Delivered,Card,14.0,2,0,3,0.06,low
+ORD00087,2024-03-20,Wrap & Roll,North,293.0,87.0,4.5,Cancelled,Wallet,0.0,1,4,1,0.81,high
+ORD00088,2024-01-26,Sushi Bay,Central,423.0,72.0,4.5,Delayed,Cash,20.0,3,0,3,0.58,high
+ORD00089,2024-02-10,Pizza Palace,East,432.0,27.0,4.9,Delivered,Wallet,12.0,0,1,0,0.06,low
+ORD00090,2024-09-20,Sushi Bay,East,972.0,49.0,3.4,Delivered,Card,13.0,3,0,0,0.08,low
+ORD00091,2024-12-14,Sushi Bay,Central,1204.0,60.0,5.0,Cancelled,Cash,1.0,3,0,3,0.91,high
+ORD00092,2024-08-13,Burger Hub,Central,683.0,87.0,3.8,Delayed,Wallet,25.0,3,3,3,0.7,high
+ORD00093,2024-01-09,Pizza Palace,West,739.0,44.0,3.6,Delayed,UPI,29.0,3,1,2,0.14,low
+ORD00094,2024-01-09,Spice Garden,North,435.0,83.0,4.3,Refunded,Cash,12.0,1,2,1,0.37,low
+ORD00095,2024-08-07,Sushi Bay,East,1524.0,66.0,2.1,Delivered,Wallet,30.0,1,0,0,0.36,low
+ORD00096,2024-03-12,Burger Hub,North,911.0,61.0,2.4,Delayed,Cash,19.0,2,3,1,0.35,low
+ORD00097,2024-10-25,Pizza Palace,West,324.0,28.0,2.7,Refunded,Cash,21.0,2,1,2,0.15,low
+ORD00098,2024-10-05,Pizza Palace,West,467.0,21.0,2.9,Refunded,Wallet,14.0,0,1,2,0.15,low
+ORD00099,2024-07-09,Pizza Palace,East,712.0,55.0,2.7,Delayed,UPI,18.0,3,1,0,0.17,low
+ORD00100,2024-05-02,Burger Hub,West,453.0,80.0,4.7,Delayed,UPI,9.0,0,3,2,0.58,high
+ORD00101,2024-07-28,Sushi Bay,South,1044.0,60.0,2.6,Refunded,Wallet,6.0,1,0,4,0.7,high
+ORD00102,2024-10-06,Pizza Palace,South,1355.0,17.0,4.3,Cancelled,UPI,16.0,3,1,4,0.61,high
+ORD00103,2024-08-13,Wrap & Roll,North,1574.0,74.0,2.2,Refunded,UPI,5.0,3,4,1,0.54,low
+ORD00104,2024-05-05,Wrap & Roll,West,880.0,39.0,2.5,Delayed,Card,18.0,1,4,2,0.25,low
+ORD00105,2024-04-12,Burger Hub,Central,1195.0,67.0,3.2,Delivered,Card,6.0,3,3,3,0.34,low
+ORD00106,2024-03-02,Pizza Palace,East,1377.0,60.0,2.3,Delivered,Wallet,6.0,1,1,0,0.13,low
+ORD00107,2024-06-27,Spice Garden,West,905.0,21.0,2.6,Delayed,Cash,17.0,1,2,2,0.31,low
+ORD00108,2024-05-14,Sushi Bay,South,1245.0,28.0,5.0,Delayed,Wallet,26.0,2,0,4,0.18,low
+ORD00109,2024-09-16,Spice Garden,West,1260.0,57.0,4.5,Delivered,Cash,28.0,0,2,2,0.34,low
+ORD00110,2024-05-10,Wrap & Roll,North,983.0,85.0,4.5,Refunded,Card,8.0,0,4,1,0.58,high
+ORD00111,2024-03-07,Burger Hub,East,174.0,39.0,3.0,Refunded,Card,21.0,2,3,0,0.18,low
+ORD00112,2024-06-08,Spice Garden,East,1189.0,80.0,4.2,Refunded,Card,7.0,0,2,0,0.2,low
+ORD00113,2024-10-20,Sushi Bay,East,149.0,76.0,2.4,Delayed,UPI,7.0,2,0,0,0.46,low
+ORD00114,2024-04-20,Wrap & Roll,North,837.0,39.0,3.3,Delayed,UPI,8.0,1,4,1,0.1,low
+ORD00115,2024-01-28,Pizza Palace,Central,856.0,84.0,4.7,Cancelled,UPI,8.0,0,1,3,0.75,high
+ORD00116,2024-02-14,Sushi Bay,Central,316.0,30.0,5.0,Cancelled,UPI,1.0,0,0,3,0.74,high
+ORD00117,2024-05-28,Spice Garden,South,1278.0,68.0,2.4,Cancelled,Cash,11.0,1,2,4,0.79,high
+ORD00118,2024-03-15,Wrap & Roll,South,225.0,43.0,2.4,Delayed,Cash,16.0,1,4,4,0.14,low
+ORD00119,2024-04-01,Pizza Palace,South,772.0,45.0,3.9,Refunded,Card,3.0,1,1,4,0.33,low
+ORD00120,2024-04-16,Pizza Palace,South,419.0,36.0,2.0,Delivered,UPI,4.0,2,1,4,0.17,low
+ORD00121,2024-05-11,Burger Hub,North,278.0,20.0,4.6,Delivered,Wallet,12.0,2,3,1,0.12,low
+ORD00122,2024-07-14,Wrap & Roll,East,1646.0,53.0,4.4,Refunded,Card,6.0,3,4,0,0.25,low
+ORD00123,2024-04-12,Pizza Palace,East,1033.0,76.0,3.3,Delivered,Cash,12.0,0,1,0,0.17,low
+ORD00124,2024-08-11,Sushi Bay,North,674.0,58.0,4.7,Delayed,Wallet,11.0,1,0,1,0.34,low
+ORD00125,2024-03-04,Spice Garden,South,282.0,33.0,3.8,Delivered,UPI,10.0,0,2,4,0.04,low
+ORD00126,2024-02-07,Burger Hub,South,697.0,67.0,4.6,Delivered,Cash,30.0,3,3,4,0.27,low
+ORD00127,2024-05-07,Burger Hub,East,1501.0,36.0,4.3,Delivered,UPI,17.0,3,3,0,0.02,low
+ORD00128,2024-01-04,Sushi Bay,East,977.0,55.0,5.0,Cancelled,UPI,13.0,3,0,0,0.69,high
+ORD00129,2024-02-03,Sushi Bay,West,1466.0,40.0,2.2,Delivered,Wallet,6.0,3,0,2,0.08,low
+ORD00130,2024-10-08,Spice Garden,South,434.0,51.0,3.7,Cancelled,Wallet,22.0,3,2,4,0.7,high
+ORD00131,2024-06-06,Sushi Bay,North,1205.0,50.0,4.8,Delivered,Cash,17.0,3,0,1,0.13,low
+ORD00132,2024-07-04,Spice Garden,South,749.0,67.0,4.0,Delivered,UPI,9.0,1,2,4,0.57,high
+ORD00133,2024-08-06,Sushi Bay,Central,400.0,44.0,3.6,Delivered,UPI,8.0,0,0,3,0.05,low
+ORD00134,2024-08-14,Pizza Palace,West,741.0,43.0,4.6,Refunded,Cash,0.0,2,1,2,0.46,low
+ORD00135,2024-03-10,Pizza Palace,South,1126.0,89.0,3.3,Cancelled,Card,5.0,3,1,4,0.83,high
+ORD00136,2024-05-15,Sushi Bay,West,404.0,38.0,2.4,Refunded,UPI,14.0,0,0,2,0.04,low
+ORD00137,2024-03-03,Burger Hub,East,1434.0,39.0,2.9,Cancelled,Card,26.0,2,3,0,0.06,low
+ORD00138,2024-08-09,Spice Garden,East,178.0,73.0,3.9,Cancelled,Card,30.0,2,2,0,0.76,high
+ORD00139,2024-03-28,Burger Hub,Central,496.0,59.0,3.5,Delayed,Cash,13.0,3,3,3,0.66,high
+ORD00140,2024-01-11,Spice Garden,East,1349.0,37.0,2.2,Delivered,Wallet,24.0,1,2,0,0.03,low
+ORD00141,2024-01-28,Wrap & Roll,Central,767.0,76.0,3.3,Cancelled,UPI,11.0,0,4,3,0.87,high
+ORD00142,2024-08-14,Burger Hub,Central,1797.0,81.0,4.2,Cancelled,UPI,0.0,2,3,3,0.81,high
+ORD00143,2024-06-15,Pizza Palace,Central,1660.0,36.0,2.7,Delayed,UPI,11.0,0,1,3,0.18,low
+ORD00144,2024-06-18,Sushi Bay,West,662.0,54.0,3.4,Delivered,Card,11.0,0,0,2,0.16,low
+ORD00145,2024-02-10,Spice Garden,South,930.0,54.0,3.3,Cancelled,Card,4.0,0,2,4,0.88,high
+ORD00146,2024-12-09,Wrap & Roll,West,438.0,82.0,4.8,Cancelled,UPI,17.0,0,4,2,0.81,high
+ORD00147,2024-05-22,Pizza Palace,South,123.0,80.0,3.9,Delivered,UPI,5.0,3,1,4,0.24,low
+ORD00148,2024-11-06,Wrap & Roll,North,775.0,31.0,2.8,Delivered,UPI,25.0,1,4,1,0.12,low
+ORD00149,2024-12-13,Sushi Bay,North,772.0,27.0,4.4,Refunded,Card,9.0,3,0,1,0.04,low
+ORD00150,2024-05-25,Burger Hub,Central,1800.0,71.0,2.3,Delayed,Card,11.0,0,3,3,0.81,high
