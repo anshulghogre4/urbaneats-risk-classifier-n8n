@@ -1,0 +1,305 @@
+{
+  "name": "urbaneats",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -512,
+        -272
+      ],
+      "id": "5af98dd3-4e5b-409b-a8c4-eb09cdc7fcf0",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/anshulghogre4/urbaneats-risk-classifier-n8n/refs/heads/main/data/urbaneats_daily_brief_input.csv",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -496,
+        -64
+      ],
+      "id": "c54b25b2-b5f6-4c11-95ef-61f28ab5605b",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pull raw CSV text from HTTP Request node\nconst csv = $input.first().json.data || $input.first().json.body || $input.first().json;\nconst text = typeof csv === 'string' ? csv : JSON.stringify(csv);\n\n// Parse CSV\nconst lines = text.trim().split(/\\r?\\n/);\nconst headers = lines[0].split(',').map(h => h.trim());\nconst idx = name => headers.indexOf(name);\n\nconst rows = lines.slice(1).map(line => {\n  // simple CSV split — fine if no quoted commas in your data\n  const cells = line.split(',');\n  const obj = {};\n  headers.forEach((h, i) => obj[h] = (cells[i] || '').trim());\n  return obj;\n});\n\nconst total_orders = rows.length;\n\n// cancellation_rate from order_status column\nconst cancelled = rows.filter(r => (r.order_status || '').toLowerCase() === 'cancelled').length;\nconst cancellation_rate = total_orders ? cancelled / total_orders : 0;\n\n// avg delivery time\nconst deliveryTimes = rows\n  .map(r => parseFloat(r.delivery_time_mins))\n  .filter(v => !isNaN(v));\nconst avg_delivery_time = deliveryTimes.length\n  ? deliveryTimes.reduce((a, b) => a + b, 0) / deliveryTimes.length\n  : 0;\n\n// worst zone by complaint count\nconst complaintsByZone = {};\nfor (const r of rows) {\n  const z = r.delivery_zone || 'Unknown';\n  const c = parseInt(r.customer_complaints, 10);\n  if (!isNaN(c)) complaintsByZone[z] = (complaintsByZone[z] || 0) + c;\n}\nconst worst_zone = Object.entries(complaintsByZone)\n  .sort((a, b) => b[1] - a[1])[0] || ['n/a', 0];\n\n// worst restaurant by cancellation count\nconst cancelsByRestaurant = {};\nfor (const r of rows) {\n  if ((r.order_status || '').toLowerCase() === 'cancelled') {\n    const name = r.restaurant_name || 'Unknown';\n    cancelsByRestaurant[name] = (cancelsByRestaurant[name] || 0) + 1;\n  }\n}\nconst worst_restaurant = Object.entries(cancelsByRestaurant)\n  .sort((a, b) => b[1] - a[1])[0] || ['n/a', 0];\n\n// top cancel-risk restaurant-zone pair (highest cancel_probability)\nlet top_pair = { restaurant: 'n/a', zone: 'n/a', prob: 0, alert: '' };\nfor (const r of rows) {\n  const p = parseFloat(r.cancel_probability);\n  if (!isNaN(p) && p > top_pair.prob) {\n    top_pair = {\n      restaurant: r.restaurant_name,\n      zone: r.delivery_zone,\n      prob: p,\n      alert: (r.alert || '').slice(0, 300),\n    };\n  }\n}\n\n// yesterday's date (ISO)\nconst yesterday = new Date();\nyesterday.setDate(yesterday.getDate() - 1);\nconst date = yesterday.toISOString().slice(0, 10);\n\nreturn [{\n  json: {\n    date,\n    total_orders,\n    cancelled_orders: cancelled,\n    cancellation_rate: Number(cancellation_rate.toFixed(3)),\n    cancellation_rate_pct: Math.round(cancellation_rate * 100),\n    avg_delivery_time: Number(avg_delivery_time.toFixed(1)),\n    worst_zone: worst_zone[0],\n    worst_zone_complaints: worst_zone[1],\n    worst_restaurant: worst_restaurant[0],\n    worst_restaurant_cancels: worst_restaurant[1],\n    top_pair_restaurant: top_pair.restaurant,\n    top_pair_zone: top_pair.zone,\n    top_pair_probability: Number(top_pair.prob.toFixed(3)),\n    top_pair_alert: top_pair.alert,\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -336,
+        -64
+      ],
+      "id": "ccb4dbb1-39e1-4026-ba64-2d73077b86a8",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "52d377a0-709d-454b-9cd0-a0aef062965b",
+              "leftValue": "={{ $json.cancellation_rate }}",
+              "rightValue": 0.2,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -176,
+        -64
+      ],
+      "id": "5ff5b6ca-bc02-49bf-af5b-6a099452dd43",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "91a77830-c014-4bd9-b857-349b53825b7e",
+              "name": "message",
+              "value": "=🚨 UrbanEats Daily Ops Brief — {{ $('Code in JavaScript').item.json.date }}\n\nCancellation rate: {{ $('Code in JavaScript').item.json.cancellation_rate_pct }}% ({{ $('Code in JavaScript').item.json.cancelled_orders }}/{{ $('Code in JavaScript').item.json.total_orders }} orders) — ABOVE 20% threshold.\n\nWorst restaurant: {{ $('Code in JavaScript').item.json.worst_restaurant }} ({{ $('Code in JavaScript').item.json.worst_restaurant_cancels }} cancellations)\nWorst zone: {{ $('Code in JavaScript').item.json.worst_zone }} ({{ $('Code in JavaScript').item.json.worst_zone_complaints }} complaints)\nTop cancel-risk pair: {{ $('Code in JavaScript').item.json.top_pair_restaurant }} / {{ $('Code in JavaScript').item.json.top_pair_zone }} ({{ ($('Code in JavaScript').item.json.top_pair_probability * 100).toFixed(0) }}% risk)\n\nAI alert: {{ $('Code in JavaScript').item.json.top_pair_alert }}\n",
+              "type": "string"
+            },
+            {
+              "id": "5f68f3ab-8cd5-490b-992b-e92e88b3f2b5",
+              "name": "subject",
+              "value": "=UrbanEats Daily Ops Brief — {{ $('Code in JavaScript').item.json.date }}\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        16,
+        -160
+      ],
+      "id": "6a16086e-1574-474d-ab8d-6cb712367efc",
+      "name": "Red Alert"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9925e9f4-b5de-4f45-ad40-3f01571a239f",
+              "name": "message",
+              "value": "=✅ UrbanEats Daily Ops Brief — {{ $('Code in JavaScript').item.json.date }}\n\nAll clear: cancellation rate {{ $('Code in JavaScript').item.json.cancellation_rate_pct }}% ({{ $('Code in JavaScript').item.json.cancelled_orders }}/{{ $('Code in JavaScript').item.json.total_orders }} orders) is within the 20% threshold.\n\nAvg delivery time: {{ $('Code in JavaScript').item.json.avg_delivery_time }} min\nWorst zone (monitor): {{ $('Code in JavaScript').item.json.worst_zone }} ({{ $('Code in JavaScript').item.json.worst_zone_complaints }} complaints)\nHighest-risk pair (watch): {{ $('Code in JavaScript').item.json.top_pair_restaurant }} / {{ $('Code in JavaScript').item.json.top_pair_zone }} ({{ ($('Code in JavaScript').item.json.top_pair_probability * 100).toFixed(0) }}%)\n\nNo action required.\n",
+              "type": "string"
+            },
+            {
+              "id": "956ad85b-af19-4ad1-b6d7-ec2b4b642177",
+              "name": "subject",
+              "value": "=UrbanEats Daily Ops Brief — {{ $('Code in JavaScript').item.json.date }}\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        16,
+        16
+      ],
+      "id": "18badd72-1e5d-4e09-b8ab-4c2d7ea89464",
+      "name": "Green Summary"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        240,
+        -80
+      ],
+      "id": "649d50b5-4f82-47d0-82c7-18c131353cfb",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "content": "={{ $json.message }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        448,
+        -80
+      ],
+      "id": "513fa110-2981-4fd8-8845-64ba128fdc10",
+      "name": "Discord",
+      "webhookId": "df2aa310-841b-477d-811d-011e769ca672",
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "xfTuupQuZCWlpPlU",
+          "name": "Discord Bot account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "dogalife4@gmail.com",
+        "subject": "={{ $json.subject }}",
+        "emailType": "text",
+        "message": "={{ $json.message }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        80
+      ],
+      "id": "9a129a6d-a56e-4155-981c-292a49202f94",
+      "name": "Send a message",
+      "webhookId": "e140ac23-c9b4-43f9-b05c-f005c0c6a646",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "98BMJGRnnoAWAO3u",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Red Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Green Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Red Alert": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Green Summary": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "89dde773-0f1e-408f-8777-058832418a4b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e02fc3cde7258fd0ec870427e414441ab830b4ea720913e38a22fb8a65c19942"
+  },
+  "nodeGroups": [],
+  "id": "bwDB50VxRbVlCRs4",
+  "tags": []
+}
